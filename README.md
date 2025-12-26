@@ -1,72 +1,53 @@
-# CLAHE Image Processing & Skull Fracture Enhancement
+# Medical Image Enhancement (CLAHE & Histogram Equalization)
 
-This project performs forensic image enhancement on X-ray/CT images of skull fractures. It utilizes **Global Histogram Equalization** and **CLAHE (Contrast Limited Adaptive Histogram Equalization)** to improve image contrast and visual quality, which is critical for medical diagnosis and forensic analysis.
+This is a small project I worked on to explore image enhancement techniques for medical X-rays, specifically focusing on skull fractures. The main goal was to see if I could make fracture details more visible by improving the contrast of the original images.
 
-## 📋 Table of Contents
-- [About the Project](#about-the-project)
-- [Techniques Used](#techniques-used)
-- [Dataset](#dataset)
-- [Prerequisites](#prerequisites)
-- [Installation & Usage](#installation--usage)
-- [Results](#results)
+I experimented with two main techniques:
+1.  **Global Histogram Equalization**: A standard approach to increase contrast.
+2.  **CLAHE (Contrast Limited Adaptive Histogram Equalization)**: A more advanced method that improves local contrast without amplifying too much noise.
 
-## 📖 About the Project
-Medical imaging (like X-rays and CT scans) often suffers from poor contrast, making it difficult to identify fractures or specific details. This notebook demonstrates how to enhance these images using standard computer vision techniques. 
+## What's in this repo?
 
-It compares three states:
-1.  **Original Image**
-2.  **Global Histogram Equalization** (Increases global contrast)
-3.  **CLAHE** (Enhances local contrast while limiting noise amplification)
+The core of this project is a Jupyter Notebook (`exercise_4.ipynb`) that walks through the processing steps.
 
-## 🛠 Techniques Used
-*   **OpenCV (`cv2`)**: For image processing algorithms (Equalization, CLAHE).
-*   **Matplotlib**: For visualization and comparing results side-by-side.
-*   **Scikit-Image**: For reading image data.
-*   **KaggleHub**: For downloading the dataset directly.
+It covers:
+*   Downloading the sample dataset automatically.
+*   Loading a raw X-ray image.
+*   Applying the different enhancement filters.
+*   Plotting the results side-by-side for comparison.
 
-## 📊 Dataset
-The project uses the **Skull Fracture Dataset** from Kaggle:
-*   **Dataset ID**: `soumyaneelsarkar/skull-fracture-dataset-original`
-*   The code automatically downloads the latest version of this dataset using `kagglehub`.
+## Tech Stack
 
-## ⚙️ Prerequisites
-Ensure you have Python installed. You will need the following libraries:
+I used **Python** for everything, relying on these libraries:
+*   `opencv-python` (cv2) for the actual image processing algorithms.
+*   `matplotlib` to display the before/after results.
+*   `scikit-image` for simple image loading.
+*   `kagglehub` to grab the dataset.
 
-*   `numpy`
-*   `matplotlib`
-*   `opencv-python`
-*   `scikit-image`
-*   `kagglehub`
+## The Dataset
 
-## 🚀 Installation & Usage
+I used a public Skull Fracture Dataset from Kaggle (`soumyaneelsarkar/skull-fracture-dataset-original`). The notebook is set up to just grab the latest version for you, so you don't need to manually download it.
 
-1.  **Clone the repository**
+## How to Run It
+
+If you want to try this out on your own machine:
+
+1.  Clone this repo:
     ```bash
     git clone https://github.com/Wirandy/CLAHE-Image-Processing.git
     cd CLAHE-Image-Processing
     ```
 
-2.  **Install dependencies**
+2.  Make sure you have the required libraries installed:
     ```bash
     pip install numpy matplotlib opencv-python scikit-image kagglehub
     ```
 
-3.  **Run the Notebook**
-    Open `exercise_4.ipynb` in Jupyter Notebook or VS Code to see the implementation and results.
-    The notebook will:
-    *   Download the dataset.
-    *   Load a sample X-ray image (`597_0_3517.png`).
-    *   Apply Global Histogram Equalization.
-    *   Apply CLAHE with Clip Limit 2.0.
-    *   Apply CLAHE with Clip Limit 3.0.
-    *   Display the comparison plot.
+3.  Open up `exercise_4.ipynb` in Jupyter or VS Code and run the cells.
 
-## 🖼️ Results
-The output is a visualization entitled **"Forensic Imaging Enhancement (X-ray/CT)"** showing:
-1.  **Original**: The raw input image.
-2.  **Global Histogram Equalization**: Often over-enhances background noise.
-3.  **CLAHE (Clip=2, Tile=8x8)**: Balanced enhancement.
-4.  **CLAHE (Clip=3, Tile=8x8)**: Stronger local contrast.
+## Results Observations
+
+When you run the notebook, you'll see a comparison image. From my testing, **CLAHE** tends to give much better results for medical imaging than standard Histogram Equalization. The standard equalization often blows out the brightness and highlights background noise too much, whereas CLAHE keeps the details recognizable while making the bone structures pop a bit more.
 
 ---
-**Author**: [Wirandy](https://github.com/Wirandy)
+Created by [Wirandy](https://github.com/Wirandy)
